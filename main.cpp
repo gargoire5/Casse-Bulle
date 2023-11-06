@@ -1,7 +1,12 @@
 #include <SFML/Graphics.hpp>
+#include "GameObject.h"
 
 int main(int argc, char** argv)
 {
+
+    GameObject g;
+
+
     //Création d'une fenêtre
     sf::RenderWindow oWindow(sf::VideoMode(640, 480), "SFML");
 
