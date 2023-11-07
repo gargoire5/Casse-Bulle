@@ -1,22 +1,34 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
 class GameObject
 {
-private:
-
-	int positionX, positionY, radius;
-	float width, height;
 
 public:
 
-	GameObject(int postionX, int positionY, float width, float height, int radius);//Constructeur
+
+	GameObject(int positionX, int positionY, int radius);//Constructeur cercle
+
+	void DrawCircle(sf::RenderTarget &target);
+
+
+	//GameObject(int positionX, int positionY, float hight, float width);//Constructeur rectangle
+
 	~GameObject();//Destructeur
 
 
-	void DrawRect();
+	// DrawcCircle(sf::CircleShape cercle());
+
+	
 
 
+private:
 
+	int p_positionX, p_positionY, p_radius;
+	float p_width, p_height;
+
+	sf::CircleShape shape;
 
 };
 
