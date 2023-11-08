@@ -8,19 +8,17 @@ class GameObject
 public:
 
 
-	GameObject(int positionX, int positionY, int radius);//Constructeur cercle
-
-	void DrawCircle(sf::RenderTarget &target);
+	GameObject(int positionX, int positionY, int radius, sf::Color colorObject);//Constructeur cercle
 
 
-	//GameObject(int positionX, int positionY, float hight, float width);//Constructeur rectangle
+	GameObject(int positionX, int positionY, float hight, float width, sf::Color colorObject);//Constructeur rectangle
 
 	~GameObject();//Destructeur
 
 
-	// DrawcCircle(sf::CircleShape cercle());
+	void Draw(sf::RenderTarget& target);
 
-	
+
 
 
 private:
@@ -28,7 +26,7 @@ private:
 	int p_positionX, p_positionY, p_radius;
 	float p_width, p_height;
 
-	sf::CircleShape shape;
+	sf::Shape* pShape;
 
 };
 

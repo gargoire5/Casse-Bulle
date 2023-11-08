@@ -4,15 +4,14 @@
 int main(int argc, char** argv)
 {
 
-    
 
     //Création d'une fenêtre
     sf::RenderWindow oWindow(sf::VideoMode(640, 480), "SFML");
 
+  
+    GameObject c(50, 50, 50, sf::Color::Magenta);
     
-   
-
-    GameObject g(50, 50, 50);
+    GameObject r(0, 0, 50, 50, sf::Color::Cyan);
 
     //GameLoop
     while (oWindow.isOpen())
@@ -25,12 +24,16 @@ int main(int argc, char** argv)
                 oWindow.close();
         }
 
-        //UPDATEw
+        //UPDATE
+
+
 
         //DRAW
         oWindow.clear();
 
-        g.DrawCircle(oWindow);
+        c.Draw(oWindow);
+
+        r.Draw(oWindow);
         
 
         oWindow.display();
