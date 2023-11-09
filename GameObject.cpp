@@ -5,24 +5,16 @@
 GameObject::GameObject(int p_positionX, int p_positionY, int p_radius, sf::Color colorObject)
 {
 	pShape = new sf::CircleShape(p_radius);
-	
-
 	pShape->setPosition(p_positionX, p_positionY);
 	pShape->setFillColor(colorObject);
-	
 }
 
-
-
-GameObject::GameObject(int p_positionX, int p_positionY, float p_height, float p_width, sf::Color colorObject)
+GameObject::GameObject(int p_positionX, int p_positionY, float p_width, float p_height, sf::Color colorObject)
 {
-	pShape = new sf::RectangleShape(sf::Vector2f(p_height, p_width));
-
-
-
+	pShape = new sf::RectangleShape(sf::Vector2f(p_width, p_height));
 	pShape->setPosition(p_positionX, p_positionY);
 	pShape->setFillColor(colorObject);
-	pShape->setOrigin(p_width / 2, p_height / 2);
+	pShape->setOrigin(p_width / 2, p_height);
 }
 
 GameObject::~GameObject()
@@ -30,15 +22,17 @@ GameObject::~GameObject()
 	std::cout << "destructeur" << std::endl;
 }
 
-void GameObject::rotate(float angle)
+void GameObject::rotate(float angle) 
 {
-	pShape->setRotation(angle);
+	float currentRotation = pShape->getRotation();
+	pShape->setRotation(currentRotation + angle);
 }
 
 void GameObject::Draw(sf::RenderTarget &target) 
 {
 	target.draw(*pShape);
 }
+
 
 
 

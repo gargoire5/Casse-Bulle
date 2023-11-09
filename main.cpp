@@ -9,9 +9,9 @@ int main(int argc, char** argv)
     sf::RenderWindow oWindow(sf::VideoMode(640, 480), "SFML");
 
   
-    GameObject c(50, 50, 50, sf::Color::Magenta);
+    GameObject c(200, 200, 50, sf::Color::Magenta);
     
-    GameObject r(320, 380, 50, 100, sf::Color::Cyan);
+    GameObject r(50, 350, 20, 200, sf::Color::Cyan);
 
     //GameLoop
     while (oWindow.isOpen())
@@ -22,9 +22,9 @@ int main(int argc, char** argv)
         {
             if (oEvent.type == sf::Event::Closed)
                 oWindow.close();
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            if (oEvent.type == sf::Event::MouseButtonPressed && oEvent.mouseButton.button == sf::Mouse::Left)
             {
-                r.rotate(100.0f);
+                r.rotate(45.0f);
             }
         }
 
@@ -38,8 +38,6 @@ int main(int argc, char** argv)
 
 
         c.Draw(oWindow);
-
-        
 
         r.Draw(oWindow);
 
