@@ -4,6 +4,5 @@
 int main(int argc, char** argv)
 {
     GameManager::getInstance().runGame();
-
     return 0;
 }

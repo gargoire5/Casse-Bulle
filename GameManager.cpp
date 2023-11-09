@@ -2,10 +2,9 @@
 #include "GameObject.h"
 
 
-void GameManager::runGame() {
-
+void GameManager::runGame() 
+{
     GameObject c(200, 200, 50, sf::Color::Magenta);
-
     GameObject r(50, 350, 20, 200, sf::Color::Cyan);
 
     //Création d'une fenêtre
@@ -28,9 +27,7 @@ void GameManager::runGame() {
                 r.rotate(45.0f);
             }
         }
-
         //UPDATE
-
         //DRAW
         oWindow.clear();
         c.Draw(oWindow);
