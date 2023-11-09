@@ -11,7 +11,7 @@ int main(int argc, char** argv)
   
     GameObject c(50, 50, 50, sf::Color::Magenta);
     
-    GameObject r(0, 0, 50, 50, sf::Color::Cyan);
+    GameObject r(320, 380, 50, 100, sf::Color::Cyan);
 
     //GameLoop
     while (oWindow.isOpen())
@@ -22,19 +22,27 @@ int main(int argc, char** argv)
         {
             if (oEvent.type == sf::Event::Closed)
                 oWindow.close();
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            {
+                r.rotate(100.0f);
+            }
         }
 
         //UPDATE
 
+        
 
 
         //DRAW
         oWindow.clear();
 
+
         c.Draw(oWindow);
 
-        r.Draw(oWindow);
         
+
+        r.Draw(oWindow);
+
 
         oWindow.display();
     }

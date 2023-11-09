@@ -11,14 +11,14 @@ public:
 	GameObject(int positionX, int positionY, int radius, sf::Color colorObject);//Constructeur cercle
 
 
-	GameObject(int positionX, int positionY, float hight, float width, sf::Color colorObject);//Constructeur rectangle
+	GameObject(int positionX, int positionY, float height, float width, sf::Color colorObject);//Constructeur rectangle
 
 	~GameObject();//Destructeur
 
 
 	void Draw(sf::RenderTarget& target);
 
-
+	void rotate(float angle);
 
 
 private:
