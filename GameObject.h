@@ -8,6 +8,8 @@ public:
 	GameObject(int positionX, int positionY, float width, float height, sf::Color colorObject);//Constructeur rectangle
 	~GameObject();//Destructeur
 	void Draw(sf::RenderTarget& target);
+	void moveWithinScreen(const sf::Vector2u& screenSize, float deltaTime);
+	void move(float offsetX, float offsetY);
 	void rotate(float angle);
 private:
 	int p_positionX, p_positionY, p_radius;
