@@ -33,42 +33,15 @@ void GameObject::Draw(sf::RenderTarget &target)
 	target.draw(*pShape);
 }
 
-void GameObject::moveWithinScreen(const sf::Vector2u& screenSize, float deltaTime)
+void GameObject::move(sf::Vector2f drt, float tps)
 {
-    sf::Vector2f newPosition = pShape->getPosition();
-
-    // Assurez-vous que le cercle ne quitte pas le côté gauche ou le côté droit de l'écran
-    if (newPosition.x - pShape->getRadius() < 0)
-    {
-        newPosition.x = pShape->getRadius();
-    }
-    else if (newPosition.x + pShape->getRadius() > screenSize.x)
-    {
-        newPosition.x = screenSize.x - pShape->getRadius();
-    }
-
-    // Assurez-vous que le cercle ne quitte pas le haut ou le bas de l'écran
-    if (newPosition.y - pShape->getRadius() < 0)
-    {
-        newPosition.y = pShape->getRadius();
-    }
-    else if (newPosition.y + pShape->getRadius() > screenSize.y)
-    {
-        newPosition.y = screenSize.y - pShape->getRadius();
-    }
-
-    // Appliquer la nouvelle position
-    pShape->setPosition(newPosition);
-}
-
-void GameObject::move(float offsetX, float offsetY)
-{
-    float fNewX = pShape->getPosition().x + offsetX;
-    float fNewY = pShape->getPosition().y + offsetY;
-
+	float vitesse = 420;
+	// a mettre dans une fonction maths
+	float norme = std::sqrt(drt.x * drt.x + drt.y * drt.y);
+	drt.x = drt.x / norme;
+	drt.y = drt.y / norme;
+	//
+    float fNewX = pShape->getPosition().x + (drt.x * tps * vitesse);
+    float fNewY = pShape->getPosition().y + (drt.y * tps * vitesse);
     pShape->setPosition(fNewX, fNewY);
 }
-
-
-
-
