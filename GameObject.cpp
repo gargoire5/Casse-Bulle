@@ -14,7 +14,7 @@ GameObject::GameObject(int p_positionX, int p_positionY, float p_width, float p_
 	pShape = new sf::RectangleShape(sf::Vector2f(p_width, p_height));
 	pShape->setPosition(p_positionX, p_positionY);
 	pShape->setFillColor(colorObject);
-	pShape->setOrigin(p_width / 2, p_height);
+	//pShape->setOrigin(p_width / 2, p_height);
 }
 
 GameObject::~GameObject()
@@ -43,6 +43,16 @@ void GameObject::setPosition(float x, float y)
 	pShape->setPosition(x, y);
 }
 
+bool GameObject::isActive() const
+{
+	return active;
+}
+
+void GameObject::setActive(bool isActive)
+{
+	active = isActive;
+}
+
 void GameObject::Draw(sf::RenderTarget &target) 
 {
 	target.draw(*pShape);
@@ -50,7 +60,7 @@ void GameObject::Draw(sf::RenderTarget &target)
 
 void GameObject::move(sf::Vector2f drt, float tps)
 {
-	float vitesse = 420;
+	float vitesse = 300;
 	// a mettre dans une fonction maths
 	float norme = std::sqrt(drt.x * drt.x + drt.y * drt.y);
 	drt.x = drt.x / norme;
