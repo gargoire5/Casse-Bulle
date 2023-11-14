@@ -45,9 +45,10 @@ void GameManager::runGame()
                 direction.y = std::abs(direction.y);
             }
             // Bord inférieur
-            if (ballPosition.y + ballSize.y / 2 > windowSize.y-30)
+            if (ballPosition.y + ballSize.y / 2 > windowSize.y)
             {
-                direction.y = -std::abs(direction.y);
+                ball.setPosition(335, 825);
+                ballLaunched = false;
             }
             // Bord gauche
             if (ballPosition.x - ballSize.x / 2 < -30)

@@ -38,6 +38,11 @@ sf::Vector2f GameObject::getSize() const
 	return sf::Vector2f(bounds.width, bounds.height);
 }
 
+void GameObject::setPosition(float x, float y)
+{
+	pShape->setPosition(x, y);
+}
+
 void GameObject::Draw(sf::RenderTarget &target) 
 {
 	target.draw(*pShape);

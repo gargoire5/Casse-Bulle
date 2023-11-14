@@ -10,6 +10,7 @@ public:
 	void Draw(sf::RenderTarget& target);
 	void move(sf::Vector2f drt, float tps);
 	void rotate(float angle);
+	void setPosition(float x, float y);
 	sf::Vector2f getPosition() const
 	{
 		return pShape->getPosition();
@@ -19,4 +20,5 @@ private:
 	int p_positionX, p_positionY, p_radius;
 	float p_width, p_height;
 	sf::Shape* pShape;
+	bool isActive;
 };
