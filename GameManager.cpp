@@ -9,10 +9,10 @@ void GameManager::runGame()
 
     //Création des objects
     GameObject ball(335, 825, 30, sf::Color::Yellow);
-    std::vector<std::vector<GameObject>> bricks;
+    std::vector<std::vector<GameObject*>> bricks;
     int numColBrick = 10;
     int numLigneBrick = 6;
-    bricks.resize(numColBrick, std::vector<GameObject>(numLigneBrick));
+    bricks.resize(numColBrick, std::vector<GameObject*>(numLigneBrick));
     
     for (int row = 0; row < numLigneBrick; ++row)
     {
@@ -21,7 +21,7 @@ void GameManager::runGame()
             sf::Color brickColor = (row % 2 == 0 && col % 2 == 0) ? sf::Color::Yellow : sf::Color::White;
             int brickX = 10 + (80 * col);
             int brickY = 10 + (40 * row);
-            GameObject brick(brickX, brickY, 70, 30, brickColor);
+            GameObject* brick = new GameObject(brickX, brickY, 70, 30, brickColor);
             bricks[col].push_back(brick);
         }
     }
@@ -90,9 +90,9 @@ void GameManager::runGame()
         {
             for (int row = 0; row < numLigneBrick; ++row)
             {
-                if (bricks[col][row].isActive())
+                if (bricks[col][row]->isActive())
                 {
-                    bricks[col][row].Draw(oWindow);
+                    bricks[col][row]->Draw(oWindow);
                 }
             }
         }
