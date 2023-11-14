@@ -14,6 +14,7 @@ public:
 	{
 		return pShape->getPosition();
 	}
+	sf::Vector2f getSize() const;
 private:
 	int p_positionX, p_positionY, p_radius;
 	float p_width, p_height;

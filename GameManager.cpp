@@ -37,6 +37,28 @@ void GameManager::runGame()
         //UPDATE
         if (ballLaunched)
         {
+            sf::Vector2f ballPosition = ball.getPosition();
+            sf::Vector2f ballSize = ball.getSize();
+            //Bord Supérieur
+            if (ballPosition.y - ballSize.y / 2 < 0-30)
+            {
+                direction.y = std::abs(direction.y);
+            }
+            // Bord inférieur
+            if (ballPosition.y + ballSize.y / 2 > windowSize.y-30)
+            {
+                direction.y = -std::abs(direction.y);
+            }
+            // Bord gauche
+            if (ballPosition.x - ballSize.x / 2 < -30)
+            {
+                direction.x = std::abs(direction.x);
+            }
+            // Bord droit
+            if (ballPosition.x + ballSize.x / 2 > windowSize.x-30)
+            {
+                direction.x = -std::abs(direction.x);
+            }
             ball.move(direction, deltaTime);
         }
         //DRAW

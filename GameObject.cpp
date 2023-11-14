@@ -28,6 +28,16 @@ void GameObject::rotate(float angle)
 	pShape->setRotation(currentRotation + angle);
 }
 
+sf::Vector2f GameObject::getSize() const
+{
+	if (pShape->getPointCount() == 0) {
+		return sf::Vector2f(0, 0);
+	}
+
+	sf::FloatRect bounds = pShape->getLocalBounds();
+	return sf::Vector2f(bounds.width, bounds.height);
+}
+
 void GameObject::Draw(sf::RenderTarget &target) 
 {
 	target.draw(*pShape);
