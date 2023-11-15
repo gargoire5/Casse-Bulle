@@ -14,7 +14,6 @@ GameObject::GameObject(int p_positionX, int p_positionY, float p_width, float p_
 	pShape = new sf::RectangleShape(sf::Vector2f(p_width, p_height));
 	pShape->setPosition(p_positionX, p_positionY);
 	pShape->setFillColor(colorObject);
-	//pShape->setOrigin(p_width / 2, p_height);
 }
 
 GameObject::~GameObject()

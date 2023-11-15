@@ -130,11 +130,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ball.cpp" />
+    <ClCompile Include="brick.cpp" />
+    <ClCompile Include="cannon.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ball.h" />
+    <ClInclude Include="brick.h" />
+    <ClInclude Include="cannon.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
   </ItemGroup>

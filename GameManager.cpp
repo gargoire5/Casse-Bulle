@@ -2,15 +2,16 @@
 #include "GameObject.h"
 #include <iostream>
 #include <vector>
+#include "ball.h"
 
 
 void GameManager::runGame() 
 {
 
     //Création des objects
-    GameObject ball(335, 825, 30, sf::Color::Yellow);
+    Ball ball(335, 825, 30, sf::Color::Yellow);
     std::vector<std::vector<GameObject*>> bricks;
-    int numColBrick = 10;
+    int numColBrick = 7;
     int numLigneBrick = 6;
     bricks.resize(numColBrick, std::vector<GameObject*>(numLigneBrick));
     
@@ -19,10 +20,9 @@ void GameManager::runGame()
         for (int col = 0; col < numColBrick; ++col)
         {
             sf::Color brickColor = (row % 2 == 0 && col % 2 == 0) ? sf::Color::Yellow : sf::Color::White;
-            int brickX = 10 + (80 * col);
-            int brickY = 10 + (40 * row);
-            GameObject* brick = new GameObject(brickX, brickY, 70, 30, brickColor);
-            bricks[col].push_back(brick);
+            int brickX = 10 + (100 * col);
+            int brickY = 10 + (50 * row);
+            bricks[col][row]= new GameObject(brickX, brickY, 80, 30, brickColor);
         }
     }
 
@@ -65,7 +65,7 @@ void GameManager::runGame()
             // Bord inférieur
             if (ballPosition.y + ballSize.y / 2 > windowSize.y)
             {
-                ball.setPosition(325,825);
+                ball.setPosition(325, 825);
                 ballLaunched = false;
             }
             // Bord gauche
@@ -84,16 +84,17 @@ void GameManager::runGame()
         oWindow.clear();
         if (ballLaunched && ball.getPosition().y - ball.getSize().y / 2 < windowSize.y)
         {
-            ball.Draw(oWindow);
+            ball.draw(oWindow);
         }
         for (int col = 0; col < numColBrick; ++col)
         {
             for (int row = 0; row < numLigneBrick; ++row)
             {
-                if (bricks[col][row]->isActive())
+                bricks[col][row]->Draw(oWindow);
+                /*if (bricks[col][row]->isActive())
                 {
                     bricks[col][row]->Draw(oWindow);
-                }
+                }*/
             }
         }
         oWindow.display();

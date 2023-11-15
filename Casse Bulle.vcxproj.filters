@@ -1,36 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Fichiers sources">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête">
+    <Filter Include="src">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Fichiers de ressources">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="src\Entités">
+      <UniqueIdentifier>{a16e1f8d-ae5b-44e7-8af3-3bd9d32d5b38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Entités\Ball">
+      <UniqueIdentifier>{2e68375c-8478-4183-8af3-be3e46fdcc2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Entités\Cannon">
+      <UniqueIdentifier>{54de81ea-42fd-4db3-b0a9-157507ee253f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Entités\Brick">
+      <UniqueIdentifier>{5516bb7c-e110-447a-8a62-124f8ebac358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game_Manager">
+      <UniqueIdentifier>{a869f48a-32e7-49c4-8161-b116e636bdfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game_Object">
+      <UniqueIdentifier>{13ba97c2-be6a-49e5-815d-5171997d81cc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="ball.cpp">
+      <Filter>src\Entités\Ball</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="cannon.cpp">
+      <Filter>src\Entités\Cannon</Filter>
+    </ClCompile>
+    <ClCompile Include="brick.cpp">
+      <Filter>src\Entités\Brick</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>src\Game_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>src\Game_Object</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameObject.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="ball.h">
+      <Filter>src\Entités\Ball</Filter>
+    </ClInclude>
+    <ClInclude Include="cannon.h">
+      <Filter>src\Entités\Cannon</Filter>
+    </ClInclude>
+    <ClInclude Include="brick.h">
+      <Filter>src\Entités\Brick</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>src\Game_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>src\Game_Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
