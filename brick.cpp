@@ -1,20 +1,9 @@
-#include "brick.h"
+#include "Brick.h"
 
-
-Brick::Brick(float x, float y, int initialHp)
-    : hp(initialHp), isActive(true)
+Brick::Brick(float x, float y, float width, float height, sf::Color color, int initialHp)
+    : GameObject(x, y, width, height, color), hp(initialHp), isActive(true)
 {
-    shape.setSize(sf::Vector2f(70, 30)); 
-    shape.setPosition(x, y);
-    shape.setFillColor(sf::Color::Green); 
-}
-
-void Brick::draw(sf::RenderWindow& window)
-{
-    if (isActive)
-    {
-        window.draw(shape);
-    }
+    
 }
 
 bool Brick::isAlive() const

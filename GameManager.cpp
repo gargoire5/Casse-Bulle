@@ -18,20 +18,16 @@ void GameManager::runGame()
     int numColBrick = 7;
     int numLigneBrick = 6;
 
-    Ball ball(335, 980, 20, sf::Color::Yellow);
+    Ball ball(335, 970, 20, sf::Color::Yellow);
     Cannon cannon(oWindow);
-    Brick brick();
     std::vector<std::vector<Brick>> bricks;
-    bricks.resize(numColBrick, std::vector<Brick>(numLigneBrick));
-    
-    for (int row = 0; row < numLigneBrick; ++row)
-    {
-        for (int col = 0; col < numColBrick; ++col)
-        {
+    bricks.resize(8, std::vector<Brick>(6));
+    for (int col = 0; col < 8; ++col) {
+        for (int row = 0; row < 6; ++row) {
             sf::Color brickColor = (row % 2 == 0 && col % 2 == 0) ? sf::Color::Yellow : sf::Color::White;
-            int brickX = 10 + (100 * col);
-            int brickY = 10 + (50 * row);
-            bricks[col][row] = Brick(brickX, brickY, 1);
+            float brickX = 20 + (80 + 15) * col;
+            float brickY = 20 + (30 + 15) * row;
+            bricks[col][row] = Brick(brickX, brickY, 80, 30, brickColor, 1);
         }
     }
     //GameLoop
@@ -64,9 +60,9 @@ void GameManager::runGame()
                 direction.y = std::abs(direction.y);
             }
             // Bord inférieur
-            if (ballPosition.y + ballSize.y / 2 > windowSize.y+10)
+            if (ballPosition.y + ballSize.y / 2 > windowSize.y + 20)
             {
-                ball.setPosition(325, 980);
+                ball.setPosition(325, 970);
                 ballLaunched = false;
             }
             // Bord gauche
@@ -75,16 +71,16 @@ void GameManager::runGame()
                 direction.x = std::abs(direction.x);
             }
             // Bord droit
-            if (ballPosition.x + ballSize.x / 2 > windowSize.x-20)
+            if (ballPosition.x + ballSize.x / 2 > windowSize.x - 20)
             {
-                direction.x = - std::abs(direction.x);
+                direction.x = -std::abs(direction.x);
             }
             ball.move(direction, deltaTime);
         }
         cannon.update(sf::Mouse::getPosition(oWindow));
         //DRAW
         oWindow.clear();
-        cannon.Draw(oWindow);
+        cannon.draw();
         if (ballLaunched && ball.getPosition().y - ball.getSize().y / 2 < windowSize.y)
         {
             ball.Draw(oWindow);
@@ -93,7 +89,7 @@ void GameManager::runGame()
         {
             for (int row = 0; row < numLigneBrick; ++row)
             {
-                bricks[col][row].draw(oWindow);
+                bricks[col][row].Draw(oWindow);
             }
         }
         oWindow.display();

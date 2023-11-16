@@ -2,14 +2,14 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-GameObject::GameObject(int positionX, int positionY, float width, float height, sf::Color colorObject)
+GameObject::GameObject(float positionX, float positionY, float width, float height, sf::Color colorObject)
 {
 	pShape = new sf::RectangleShape(sf::Vector2f(width, height));
 	pShape->setPosition(positionX, positionY);
 	pShape->setFillColor(colorObject);
 }
 
-GameObject::GameObject(int positionX, int positionY, int radius, sf::Color colorObject)
+GameObject::GameObject(float positionX, float positionY, int radius, sf::Color colorObject)
 {
 	pShape = new sf::CircleShape(radius);
 	pShape->setPosition(positionX, positionY);
@@ -20,12 +20,12 @@ GameObject::~GameObject()
 {
 	std::cout << "destructeur" << std::endl;
 }
-
-void GameObject::rotate(float angle) 
+/*
+void GameObject::rotate(float angle)
 {
-	float currentRotation = pShape->getRotation();
-	pShape->setRotation(currentRotation + angle);
-}
+	float angle = std::atan2(cursorPosition.y - position.y, cursorPosition.x - position.x);
+	shape.setRotation(angle * 180 / 3.1415);
+}*/
 
 void GameObject::setPosition(float x, float y)
 {
@@ -36,7 +36,7 @@ void GameObject::Draw(sf::RenderTarget &target)
 {
 	target.draw(*pShape);
 }
-
+/*
 void GameObject::move(sf::Vector2f drt, float tps)
 {
 	float vitesse = 300;
@@ -48,7 +48,7 @@ void GameObject::move(sf::Vector2f drt, float tps)
     float fNewX = pShape->getPosition().x + (drt.x * tps * vitesse);
     float fNewY = pShape->getPosition().y + (drt.y * tps * vitesse);
     pShape->setPosition(fNewX, fNewY);
-}
+}*/
 
 sf::Vector2f GameObject::getSize() const
 {
