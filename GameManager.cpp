@@ -3,17 +3,26 @@
 #include <iostream>
 #include <vector>
 #include "ball.h"
+#include "cannon.h"
+#include "brick.h"
 
 
 void GameManager::runGame() 
 {
+    sf::RenderWindow oWindow(sf::VideoMode(700, 1000), "Casse Bulles");
+    sf::Clock clock;
+    sf::Vector2f direction;
 
-    //Création des objects
-    Ball ball(335, 825, 30, sf::Color::Yellow);
-    std::vector<std::vector<GameObject*>> bricks;
+    float deltaTime = 0;
+    bool ballLaunched = false;
     int numColBrick = 7;
     int numLigneBrick = 6;
-    bricks.resize(numColBrick, std::vector<GameObject*>(numLigneBrick));
+
+    Ball ball(335, 980, 20, sf::Color::Yellow);
+    Cannon cannon(oWindow);
+    Brick brick();
+    std::vector<std::vector<Brick>> bricks;
+    bricks.resize(numColBrick, std::vector<Brick>(numLigneBrick));
     
     for (int row = 0; row < numLigneBrick; ++row)
     {
@@ -22,17 +31,9 @@ void GameManager::runGame()
             sf::Color brickColor = (row % 2 == 0 && col % 2 == 0) ? sf::Color::Yellow : sf::Color::White;
             int brickX = 10 + (100 * col);
             int brickY = 10 + (50 * row);
-            bricks[col][row]= new GameObject(brickX, brickY, 80, 30, brickColor);
+            bricks[col][row] = Brick(brickX, brickY, 1);
         }
     }
-
-    //Création d'une fenêtre
-    sf::RenderWindow oWindow(sf::VideoMode(700, 1000), "Casse Bulles");
-    sf::Clock clock;
-    sf::Vector2f direction;
-    float deltaTime=0;
-    bool ballLaunched = false;
-
     //GameLoop
     while (oWindow.isOpen())
     {
@@ -46,7 +47,7 @@ void GameManager::runGame()
             if (oEvent.type == sf::Event::MouseButtonPressed && oEvent.mouseButton.button == sf::Mouse::Left)
             {
                 sf::Vector2i mousePosition = sf::Mouse::getPosition(oWindow);
-                std::cout << "Coordonnées de la souris : x = " << mousePosition.x << ", y = " << mousePosition.y << std::endl;
+                std::cout << "Coordonnees de la souris : x = " << mousePosition.x << ", y = " << mousePosition.y << std::endl;
                 direction.x = mousePosition.x - ball.getPosition().x;
                 direction.y = mousePosition.y - ball.getPosition().y;
                 ballLaunched = true;
@@ -58,43 +59,41 @@ void GameManager::runGame()
             sf::Vector2f ballPosition = ball.getPosition();
             sf::Vector2f ballSize = ball.getSize();
             //Bord Supérieur
-            if (ballPosition.y - ballSize.y / 2 < -30)
+            if (ballPosition.y - ballSize.y / 2 < -20)
             {
                 direction.y = std::abs(direction.y);
             }
             // Bord inférieur
-            if (ballPosition.y + ballSize.y / 2 > windowSize.y)
+            if (ballPosition.y + ballSize.y / 2 > windowSize.y+10)
             {
-                ball.setPosition(325, 825);
+                ball.setPosition(325, 980);
                 ballLaunched = false;
             }
             // Bord gauche
-            if (ballPosition.x - ballSize.x / 2 < -30)
+            if (ballPosition.x - ballSize.x / 2 < -20)
             {
                 direction.x = std::abs(direction.x);
             }
             // Bord droit
-            if (ballPosition.x + ballSize.x / 2 > windowSize.x-30)
+            if (ballPosition.x + ballSize.x / 2 > windowSize.x-20)
             {
-                direction.x = -std::abs(direction.x);
+                direction.x = - std::abs(direction.x);
             }
             ball.move(direction, deltaTime);
         }
+        cannon.update(sf::Mouse::getPosition(oWindow));
         //DRAW
         oWindow.clear();
+        cannon.Draw(oWindow);
         if (ballLaunched && ball.getPosition().y - ball.getSize().y / 2 < windowSize.y)
         {
-            ball.draw(oWindow);
+            ball.Draw(oWindow);
         }
         for (int col = 0; col < numColBrick; ++col)
         {
             for (int row = 0; row < numLigneBrick; ++row)
             {
-                bricks[col][row]->Draw(oWindow);
-                /*if (bricks[col][row]->isActive())
-                {
-                    bricks[col][row]->Draw(oWindow);
-                }*/
+                bricks[col][row].draw(oWindow);
             }
         }
         oWindow.display();

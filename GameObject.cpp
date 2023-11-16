@@ -2,17 +2,17 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-GameObject::GameObject(int p_positionX, int p_positionY, int p_radius, sf::Color colorObject)
+GameObject::GameObject(int positionX, int positionY, float width, float height, sf::Color colorObject)
 {
-	pShape = new sf::CircleShape(p_radius);
-	pShape->setPosition(p_positionX, p_positionY);
+	pShape = new sf::RectangleShape(sf::Vector2f(width, height));
+	pShape->setPosition(positionX, positionY);
 	pShape->setFillColor(colorObject);
 }
 
-GameObject::GameObject(int p_positionX, int p_positionY, float p_width, float p_height, sf::Color colorObject)
+GameObject::GameObject(int positionX, int positionY, int radius, sf::Color colorObject)
 {
-	pShape = new sf::RectangleShape(sf::Vector2f(p_width, p_height));
-	pShape->setPosition(p_positionX, p_positionY);
+	pShape = new sf::CircleShape(radius);
+	pShape->setPosition(positionX, positionY);
 	pShape->setFillColor(colorObject);
 }
 
@@ -27,29 +27,9 @@ void GameObject::rotate(float angle)
 	pShape->setRotation(currentRotation + angle);
 }
 
-sf::Vector2f GameObject::getSize() const
-{
-	if (pShape->getPointCount() == 0) {
-		return sf::Vector2f(0, 0);
-	}
-
-	sf::FloatRect bounds = pShape->getLocalBounds();
-	return sf::Vector2f(bounds.width, bounds.height);
-}
-
 void GameObject::setPosition(float x, float y)
 {
 	pShape->setPosition(x, y);
-}
-
-bool GameObject::isActive() const
-{
-	return active;
-}
-
-void GameObject::setActive(bool isActive)
-{
-	active = isActive;
 }
 
 void GameObject::Draw(sf::RenderTarget &target) 
@@ -68,4 +48,19 @@ void GameObject::move(sf::Vector2f drt, float tps)
     float fNewX = pShape->getPosition().x + (drt.x * tps * vitesse);
     float fNewY = pShape->getPosition().y + (drt.y * tps * vitesse);
     pShape->setPosition(fNewX, fNewY);
+}
+
+sf::Vector2f GameObject::getSize() const
+{
+	if (pShape->getPointCount() == 0) {
+		return sf::Vector2f(0, 0);
+	}
+
+	sf::FloatRect bounds = pShape->getLocalBounds();
+	return sf::Vector2f(bounds.width, bounds.height);
+}
+
+sf::Vector2f GameObject::getPosition() const
+{
+	return pShape->getPosition();
 }
