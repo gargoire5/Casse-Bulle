@@ -76,6 +76,18 @@ void GameManager::runGame()
                 direction.x = -std::abs(direction.x);
             }
             ball.move(direction, deltaTime);
+
+            for (int col = 0; col < numColBrick; ++col)
+            {
+                for (int row = 0; row < numLigneBrick; ++row)
+                {
+                    if (ball.CheckCollisions(bricks[col][row]))
+                    {
+                        std::cout << "Collision";
+                    }
+                }
+            }
+            
         }
         cannon.update(sf::Mouse::getPosition(oWindow));
         //DRAW

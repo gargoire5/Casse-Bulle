@@ -50,6 +50,18 @@ void GameObject::move(sf::Vector2f drt, float tps)
     pShape->setPosition(fNewX, fNewY);
 }*/
 
+bool GameObject::CheckCollisions(const GameObject& goOther) 
+{
+	if (pShape->getGlobalBounds().intersects(goOther.pShape->getGlobalBounds())) {
+		std::cout << "collision";
+		return true;
+	}
+		
+
+	return false;
+}
+
+
 sf::Vector2f GameObject::getSize() const
 {
 	if (pShape->getPointCount() == 0) {

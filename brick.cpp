@@ -1,4 +1,5 @@
 #include "Brick.h"
+#include "GameObject.h"
 
 Brick::Brick(float x, float y, float width, float height, sf::Color color, int initialHp)
     : GameObject(x, y, width, height, color), hp(initialHp), isActive(true)
@@ -6,10 +7,13 @@ Brick::Brick(float x, float y, float width, float height, sf::Color color, int i
     
 }
 
+
 bool Brick::isAlive() const
 {
     return isActive && hp > 0;
 }
+
+
 
 void Brick::takeDamage()
 {
@@ -22,3 +26,4 @@ void Brick::takeDamage()
         }
     }
 }
+

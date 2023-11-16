@@ -1,11 +1,17 @@
 #include "Ball.h"
+#include "GameObject.h"
 #include <cmath>
 
-Ball::Ball(int positionX, int positionY, int radius, sf::Color color) /*: GameObject(positionX, positionY, radius, color)*/
+Ball::Ball(int positionX, int positionY, int radius, sf::Color color) : GameObject(positionX, positionY, radius, color)
 {
     shape.setPosition(positionX, positionY);
     shape.setRadius(radius);
     shape.setFillColor(color);
+}
+
+bool Ball::CheckCollisions(const GameObject& goOther) const
+{
+    return false;
 }
 
 void Ball::setPosition(float x, float y)
